@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>생성형 AI와 바이브코딩 1일 체험 클래스 | 제주</title>
+<meta name="description" content="제주 비전공자를 위한 생성형 AI와 바이브코딩 1일 체험 클래스. 코드를 몰라도 하루면 나만의 웹페이지를 만들 수 있습니다.">
+<style>
+  :root {
+    --tangerine: #F2994A;
+    --tangerine-dark: #E07B2A;
+    --ocean: #2F8F8B;
+    --ocean-dark: #226C69;
+    --sage: #8FBC94;
+    --cream: #FDF9F2;
+    --cream-deep: #F6EFE1;
+    --ink: #2F3E33;
+    --ink-soft: #5B6B60;
+    --white: #FFFFFF;
+    --radius: 18px;
+    --shadow: 0 8px 24px rgba(47, 62, 51, 0.08);
+    --max-width: 720px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+      "Pretendard", "Malgun Gothic", sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    padding-bottom: 84px; /* space for sticky CTA */
+  }
+
+  img, svg { max-width: 100%; display: block; }
+
+  .wrap {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  a { color: inherit; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #FFF6EA 0%, var(--cream) 70%);
+    padding: 56px 0 48px;
+    text-align: center;
+  }
+
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.35;
+    filter: blur(2px);
+  }
+  .hero-blob.one {
+    width: 180px; height: 180px;
+    background: var(--sage);
+    top: -60px; left: -60px;
+    opacity: 0.25;
+  }
+  .hero-blob.two {
+    width: 220px; height: 220px;
+    background: var(--ocean);
+    bottom: -100px; right: -70px;
+    opacity: 0.15;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    background: var(--white);
+    color: var(--ocean-dark);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 6px 14px;
+    border-radius: 999px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 30px;
+    line-height: 1.35;
+    margin: 0 0 14px;
+    color: var(--ink);
+    position: relative;
+  }
+
+  h1 .accent {
+    color: var(--tangerine-dark);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 460px;
+    margin: 0 auto 28px;
+    position: relative;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--tangerine);
+    color: var(--white);
+    font-size: 17px;
+    font-weight: 700;
+    padding: 16px 32px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 10px 20px rgba(224, 123, 42, 0.28);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 26px rgba(224,123,42,0.34); }
+  .btn-primary:active { transform: translateY(0); }
+
+  .hero-meta {
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    position: relative;
+  }
+
+  /* ---------- Section generic ---------- */
+  section { padding: 52px 0; }
+  section.alt { background: var(--cream-deep); }
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ocean-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 22px;
+    text-align: center;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+
+  .section-desc {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin: 0 0 32px;
+  }
+
+  /* ---------- Cards ---------- */
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 22px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .card-num {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--sage);
+    color: var(--white);
+    font-weight: 800;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card.learn .card-num { background: var(--ocean); }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    color: var(--ink);
+  }
+
+  .card-text {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Info (time/place) ---------- */
+  .info-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px 22px;
+  }
+
+  .info-row {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--cream-deep);
+  }
+  .info-row:last-child { border-bottom: none; }
+
+  .info-icon {
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--cream-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .info-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--tangerine-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 2px;
+  }
+
+  .info-value {
+    font-size: 15px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .info-note {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-list { display: flex; flex-direction: column; gap: 12px; }
+
+  details {
+    background: var(--white);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    padding: 4px 18px;
+  }
+
+  summary {
+    cursor: pointer;
+    padding: 16px 0;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ink);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  summary::-webkit-details-marker { display: none; }
+
+  summary::after {
+    content: "+";
+    flex: none;
+    font-size: 20px;
+    color: var(--tangerine-dark);
+    transition: transform 0.2s ease;
+  }
+  details[open] summary::after { transform: rotate(45deg); }
+
+  .faq-answer {
+    font-size: 14px;
+    color: var(--ink-soft);
+    padding: 0 0 16px;
+    margin: 0;
+  }
+
+  /* ---------- Apply form ---------- */
+  .apply-box {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px 22px;
+  }
+
+  .field { margin-bottom: 16px; }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: 10px;
+    border: 1px solid #E4DCC9;
+    background: var(--cream);
+    font-size: 15px;
+    color: var(--ink);
+    font-family: inherit;
+  }
+  input:focus, select:focus {
+    outline: none;
+    border-color: var(--ocean);
+    background: var(--white);
+  }
+
+  .apply-submit {
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  .apply-success {
+    display: none;
+    background: #EAF5EC;
+    border: 1px solid var(--sage);
+    color: var(--ink);
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 14px;
+    margin-top: 14px;
+  }
+  .apply-success.show { display: block; }
+
+  .form-hint {
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-top: 14px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    text-align: center;
+    padding: 40px 20px 100px;
+    color: var(--ink-soft);
+    font-size: 13px;
+  }
+
+  /* ---------- Sticky CTA ---------- */
+  .sticky-cta {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    background: rgba(253, 249, 242, 0.92);
+    backdrop-filter: blur(6px);
+    border-top: 1px solid var(--cream-deep);
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    z-index: 50;
+  }
+  .sticky-cta .btn-primary {
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 16px;
+  }
+
+  /* ---------- Larger screens ---------- */
+  @media (min-width: 640px) {
+    h1 { font-size: 38px; }
+    .hero { padding: 76px 0 64px; }
+    .card-list { flex-direction: row; }
+    .card { flex-direction: column; }
+    .card-num { margin-bottom: 4px; }
+    .sticky-cta { display: none; } /* enough room on larger screens, avoid redundant bar */
+    body { padding-bottom: 0; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-blob one"></div>
+    <div class="hero-blob two"></div>
+    <div class="wrap">
+      <span class="eyebrow">제주 비전공자 대상 · 1일 체험 클래스</span>
+      <h1>코드 몰라도 하루면 충분한,<br><span class="accent">생성형 AI와 바이브코딩</span></h1>
+      <p class="hero-sub">
+        AI와 대화하듯 나만의 아이디어를 웹페이지로 완성해보는
+        제주 비전공자를 위한 첫걸음 체험 클래스입니다.
+      </p>
+      <a href="#apply" class="btn-primary">무료 체험 신청하기</a>
+      <p class="hero-meta">📍 제주시 · 3시간 과정 · 준비물 없이 참여 가능</p>
+    </div>
+  </header>
+
+  <section id="who">
+    <div class="wrap">
+      <p class="section-label">이런 분께 추천해요</p>
+      <h2>혹시 이런 생각 해보셨나요?</h2>
+      <p class="section-desc">코딩 경험이 전혀 없어도 괜찮습니다. 아래에 해당된다면 지금이 시작하기 딱 좋은 때예요.</p>
+      <div class="card-list">
+        <div class="card">
+          <div class="card-num">1</div>
+          <div>
+            <p class="card-title">컴퓨터는 익숙하지만 코딩은 처음이에요</p>
+            <p class="card-text">문서 작업 정도는 할 수 있지만 프로그래밍은 한 번도 배워본 적 없는 분.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-num">2</div>
+          <div>
+            <p class="card-title">내 아이디어를 직접 실현해보고 싶어요</p>
+            <p class="card-text">가게 소개 페이지나 취미 프로젝트를 직접 웹으로 만들어보고 싶은 자영업자·소상공인.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-num">3</div>
+          <div>
+            <p class="card-title">AI 시대에 뒤처지고 싶지 않아요</p>
+            <p class="card-text">생성형 AI가 궁금하지만 어디서부터 시작할지 막막했던 직장인·은퇴자.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="learn">
+    <div class="wrap">
+      <p class="section-label">커리큘럼</p>
+      <h2>하루 동안 이런 걸 배워요</h2>
+      <p class="section-desc">이론은 짧게, 직접 만들어보는 실습 위주로 진행됩니다.</p>
+      <div class="card-list">
+        <div class="card learn">
+          <div class="card-num">1</div>
+          <div>
+            <p class="card-title">생성형 AI 기초 다지기</p>
+            <p class="card-text">챗GPT·Claude 같은 AI에게 원하는 것을 정확하게 요청하는 방법을 배웁니다.</p>
+          </div>
+        </div>
+        <div class="card learn">
+          <div class="card-num">2</div>
+          <div>
+            <p class="card-title">바이브코딩으로 웹페이지 만들기</p>
+            <p class="card-text">코드를 몰라도 AI와 대화하며 나만의 홈페이지를 뚝딱 완성합니다.</p>
+          </div>
+        </div>
+        <div class="card learn">
+          <div class="card-num">3</div>
+          <div>
+            <p class="card-title">직접 배포하고 공유하기</p>
+            <p class="card-text">완성한 결과물을 인터넷에 올려 가족과 친구에게 링크로 자랑해보세요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="info">
+    <div class="wrap">
+      <p class="section-label">시간 · 장소 안내</p>
+      <h2>이렇게 진행됩니다</h2>
+      <div class="info-card">
+        <div class="info-row">
+          <div class="info-icon">🗓️</div>
+          <div>
+            <p class="info-label">일시</p>
+            <p class="info-value">매월 둘째·넷째 토요일 10:00 ~ 13:00</p>
+            <p class="info-note">3시간 과정 · 회차별 최대 12명 소수 정원</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div>
+            <p class="info-label">장소</p>
+            <p class="info-value">제주시 연동 OO 코워킹스페이스</p>
+            <p class="info-note">제주시청에서 도보 5분 · 무료 주차 가능(샘플 안내)</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">💻</div>
+          <div>
+            <p class="info-label">준비물</p>
+            <p class="info-value">개인 노트북 지참 권장</p>
+            <p class="info-note">노트북이 없어도 현장 대여용 노트북으로 참여 가능</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">💰</div>
+          <div>
+            <p class="info-label">참가비</p>
+            <p class="info-value">무료 체험 (선착순 마감)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="faq">
+    <div class="wrap">
+      <p class="section-label">자주 묻는 질문</p>
+      <h2>궁금한 점이 있으신가요?</h2>
+      <div class="faq-list">
+        <details>
+          <summary>컴퓨터를 잘 못 다뤄도 괜찮을까요?</summary>
+          <p class="faq-answer">네, 괜찮습니다. 마우스와 키보드 사용법만 아신다면 충분해요. 강사가 처음부터 끝까지 옆에서 함께 진행합니다.</p>
+        </details>
+        <details>
+          <summary>노트북이 없어도 참여할 수 있나요?</summary>
+          <p class="faq-answer">네, 현장에 대여용 노트북을 일부 준비해 두었습니다. 신청서에 대여 필요 여부를 표시해 주세요 (선착순 제공).</p>
+        </details>
+        <details>
+          <summary>하루 만에 정말 웹페이지를 완성할 수 있나요?</summary>
+          <p class="faq-answer">네, 실제로 이전 체험자 대부분이 당일 본인만의 랜딩페이지를 완성해 가져가셨습니다. 완성한 페이지는 그 자리에서 바로 확인할 수 있어요.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="apply">
+    <div class="wrap">
+      <p class="section-label">신청하기</p>
+      <h2>무료 체험, 지금 바로 신청하세요</h2>
+      <p class="section-desc">아래 정보를 남겨주시면 담당자가 확인 후 연락드립니다. (샘플 페이지로, 실제 제출 데이터는 서버로 전송되지 않습니다)</p>
+      <div class="apply-box">
+        <form id="apply-form">
+          <div class="field">
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" placeholder="홍길동" required>
+          </div>
+          <div class="field">
+            <label for="phone">연락처</label>
+            <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" required>
+          </div>
+          <div class="field">
+            <label for="date">희망 참여일</label>
+            <select id="date" name="date">
+              <option>다가오는 토요일 (오전반)</option>
+              <option>다음 회차 (2주 후)</option>
+              <option>일정 조율 원해요</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="laptop">노트북 대여 필요 여부</label>
+            <select id="laptop" name="laptop">
+              <option>노트북 지참 예정</option>
+              <option>대여가 필요해요</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary apply-submit">무료 체험 신청하기</button>
+          <p id="apply-success" class="apply-success">
+            🎉 신청이 접수되었습니다! (샘플 화면) 실제 운영 시에는 담당자가 영업일 기준 1~2일 내 연락드립니다.
+          </p>
+        </form>
+        <p class="form-hint">본 페이지는 샘플 콘텐츠로 구성되어 있으며, 외부 서버로 정보가 전송되지 않습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>제주 비전공자를 위한 생성형 AI와 바이브코딩 1일 체험 클래스</p>
+    <p>본 페이지는 데모(샘플) 랜딩페이지입니다.</p>
+  </footer>
+
+  <div class="sticky-cta">
+    <a href="#apply" class="btn-primary">무료 체험 신청하기</a>
+  </div>
+
+  <script>
+    document.getElementById('apply-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      document.getElementById('apply-success').classList.add('show');
+      this.querySelector('.apply-submit').setAttribute('disabled', 'true');
+    });
+  </script>
+
+</body>
+</html>
