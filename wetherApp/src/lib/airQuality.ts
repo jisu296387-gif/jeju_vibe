@@ -33,3 +33,10 @@ export const GRADE_COLOR: Record<AqiGrade, string> = {
   bad: 'border-orange-500/30 bg-orange-500/15 text-orange-600 dark:text-orange-400',
   veryBad: 'border-red-500/30 bg-red-500/15 text-red-600 dark:text-red-400',
 }
+
+export const GRADE_BAR_COLOR: Record<AqiGrade, string> = {
+  good: 'bg-sky-500',
+  moderate: 'bg-emerald-500',
+  bad: 'bg-orange-500',
+  veryBad: 'bg-red-500',
+}

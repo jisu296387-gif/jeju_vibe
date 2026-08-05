@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { MapPin } from 'lucide-react'
+import { MapPin, CircleAlert } from 'lucide-react'
 import { CitySearch } from '@/components/CitySearch'
 import { UnitToggle } from '@/components/UnitToggle'
 import { CurrentWeatherCard } from '@/components/CurrentWeatherCard'
@@ -7,6 +7,7 @@ import { AirQualityCard } from '@/components/AirQualityCard'
 import { HourlyForecast } from '@/components/HourlyForecast'
 import { DailyForecast } from '@/components/DailyForecast'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Alert, AlertTitle } from '@/components/ui/alert'
 import { useWeather } from '@/hooks/useWeather'
 import type { TemperatureUnit } from '@/lib/units'
 
@@ -34,9 +35,10 @@ function App() {
         </header>
 
         {error && (
-          <div className="mb-6 rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
-            {error}
-          </div>
+          <Alert variant="destructive" className="mb-6">
+            <CircleAlert />
+            <AlertTitle>{error}</AlertTitle>
+          </Alert>
         )}
 
         {loading || !data ? (

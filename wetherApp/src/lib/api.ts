@@ -37,6 +37,7 @@ export interface CurrentWeather {
   windSpeed: number
   precipitation: number
   weatherCode: number
+  isDay: boolean
   time: string
 }
 
@@ -45,6 +46,7 @@ export interface HourlyItem {
   temperature: number
   precipitationProbability: number
   weatherCode: number
+  isDay: boolean
 }
 
 export interface DailyItem {
@@ -72,8 +74,8 @@ export interface WeatherBundle {
 export async function fetchWeather(latitude: number, longitude: number): Promise<WeatherBundle> {
   const forecastUrl =
     `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}` +
-    '&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m' +
-    '&hourly=temperature_2m,precipitation_probability,weather_code' +
+    '&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,is_day' +
+    '&hourly=temperature_2m,precipitation_probability,weather_code,is_day' +
     '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset' +
     '&timezone=auto&forecast_days=7'
   const airQualityUrl =
@@ -97,6 +99,7 @@ export async function fetchWeather(latitude: number, longitude: number): Promise
       temperature: forecast.hourly.temperature_2m[idx],
       precipitationProbability: forecast.hourly.precipitation_probability[idx],
       weatherCode: forecast.hourly.weather_code[idx],
+      isDay: forecast.hourly.is_day[idx] === 1,
     }
   })
 
@@ -117,6 +120,7 @@ export async function fetchWeather(latitude: number, longitude: number): Promise
     windSpeed: forecast.current.wind_speed_10m,
     precipitation: forecast.current.precipitation,
     weatherCode: forecast.current.weather_code,
+    isDay: forecast.current.is_day === 1,
     time: forecast.current.time,
   }
 
