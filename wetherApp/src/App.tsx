@@ -8,7 +8,9 @@ import { HourlyForecast } from '@/components/HourlyForecast'
 import { DailyForecast } from '@/components/DailyForecast'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Alert, AlertTitle } from '@/components/ui/alert'
+import { ChatWidget } from '@/components/ChatWidget'
 import { useWeather } from '@/hooks/useWeather'
+import { buildWeatherContext } from '@/lib/chatContext'
 import type { TemperatureUnit } from '@/lib/units'
 
 function App() {
@@ -16,6 +18,10 @@ function App() {
   const [unit, setUnit] = useState<TemperatureUnit>('C')
 
   const cityLabel = useMemo(() => [city.name, city.admin1].filter(Boolean).join(', '), [city])
+  const weatherContext = useMemo(
+    () => (data ? buildWeatherContext(data, cityLabel, unit) : ''),
+    [data, cityLabel, unit]
+  )
 
   return (
     <div className="min-h-screen bg-background">
@@ -61,6 +67,7 @@ function App() {
           </div>
         )}
       </div>
+      <ChatWidget weatherContext={weatherContext} />
     </div>
   )
 }
